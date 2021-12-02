@@ -2,6 +2,7 @@
 from .. import indexing
 from .. document import Document
 
+# test indexing unique tokens only
 def test1():
     # initial setup
     indexing.clearIndexes()
@@ -31,6 +32,7 @@ def test1():
     assert len(carrotDocs) == 1
     assert carrotDocs[0].docName == "C"
 
+# test indexing many documents for one token, inserted in the order of the word frequency (highest to lowest) for that token
 def test2():
     # initial setup
     indexing.clearIndexes()
@@ -56,6 +58,7 @@ def test2():
     assert peopleDocs[3].docName == "U"
     assert peopleDocs[4].docName == "X"
 
+# test indexing many documents for one token, inserted in the order of the word frequency (lowest to highest) for that token
 def test3():
     # initial setup
     indexing.clearIndexes()
@@ -81,6 +84,7 @@ def test3():
     assert peopleDocs[3].docName == "U"
     assert peopleDocs[4].docName == "X"
 
+# test indexing many documents for one token, inserted in random order of the word frequency for that token
 def test4():
     # initial setup
     indexing.clearIndexes()
