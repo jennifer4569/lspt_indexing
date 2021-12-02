@@ -1,4 +1,4 @@
-def process_data(docid, unigrams, bigrams):
+def processData(docid, unigrams, bigrams):
     pass
-def get_docs(tokens, start, n):
+def getDocs(tokens, start, n):
     pass

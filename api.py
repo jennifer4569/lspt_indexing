@@ -43,7 +43,7 @@ def insert():
     docid = request_data['uid']
     unigrams = request_data[1]
     bigrams = request_data[2]
-    processing.process_data(docid, unigrams, bigrams)
+    processing.processData(docid, unigrams, bigrams)
     return '''
         Index successfully recieved document {} and its metadata
         '''.format(docid)
@@ -55,7 +55,7 @@ def retrieveDocumentsOr():
     tokens = request.args.getlist('tokens')
     start = request.args.get('start')
     num_docs = request.args.get('numDocs')
-    result = processing.get_docs(tokens, start, num_docs)
+    result = processing.getDocs(tokens, start, num_docs)
     return jsonify(result)
 
 @app.route('/docs/and', methods=['GET'])
@@ -63,7 +63,7 @@ def retrieveDocumentsAnd():
     tokens = request.args.getlist('tokens')
     start = request.args.get('start')
     num_docs = request.args.get('numDocs')
-    result = processing.get_docs(tokens, start, num_docs)
+    result = processing.getDocs(tokens, start, num_docs)
     return jsonify(result)
 
 app.run()
