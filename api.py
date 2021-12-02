@@ -1,6 +1,6 @@
 import flask
 from flask import request, jsonify
-import processing.py
+import processing
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -51,7 +51,7 @@ def insert():
 
 
 @app.route('/docs/or', methods=['GET'])
-def retrieveDocuments():
+def retrieveDocumentsOr():
     tokens = request.args.getlist('tokens')
     start = request.args.get('start')
     num_docs = request.args.get('numDocs')
@@ -59,7 +59,7 @@ def retrieveDocuments():
     return jsonify(result)
 
 @app.route('/docs/and', methods=['GET'])
-def retrieveDocuments():
+def retrieveDocumentsAnd():
     tokens = request.args.getlist('tokens')
     start = request.args.get('start')
     num_docs = request.args.get('numDocs')
