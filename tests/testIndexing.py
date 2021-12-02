@@ -338,20 +338,20 @@ def test10():
 
     # verifying test by checking documents within their respective tokens
     animalDocs = indexing.getAllDocs("animal")
-    assert len(csDocs) == 3
+    assert len(animalDocs) == 3
     animalDocNames = utilFunctions.getAllDocNames(animalDocs)
-    assert "Dog Wiki" in animalDocNames
-    assert "Cat Wiki" in animalDocNames
-    assert "Bird Wiki" in animalDocNames
+    assert animalDocNames[0] == "Dog Wiki"
+    assert animalDocNames[1] == "Cat Wiki"
+    assert animalDocNames[2] == "Bird Wiki"
 
     catDocs = indexing.getAllDocs("cat")
     assert len(catDocs) == 2
     catDocNames = utilFunctions.getAllDocNames(catDocs)
-    assert "Cat Wiki" in catDocNames
-    assert "Cat Pictures" in catDocNames
+    assert catDocNames[0] == "Cat Wiki"
+    assert catDocNames[1] == "Cat Pictures"
 
     dogDocs = indexing.getAllDocs("dog")
     assert len(dogDocs) == 2
     dogDocNames = utilFunctions.getAllDocNames(dogDocs)
-    assert "Dog Wiki" in dogDocNames
-    assert "Golden Retriever Wiki" in dogDocNames
+    assert dogDocNames[0] == "Dog Wiki"
+    assert dogDocNames[1] == "Golden Retriever Wiki"
