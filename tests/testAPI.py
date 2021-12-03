@@ -18,7 +18,7 @@ def test24():
     indexing.test10()
 
 # test an indexing query that contains multiple tokens
-@pytest.mark.skip(reason="api calls not ready yet")
+@pytest.mark.skip(reason="api not ready yet")
 def test28():
     # initial setup
     indexing.test10()
