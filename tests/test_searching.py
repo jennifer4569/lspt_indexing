@@ -12,12 +12,10 @@ def test11():
     oldIndexingData = indexing.indexingData.copy()
 
     # steps
-    try:
-        indexing.getTopNDocs("animal", 1)
-        # test failed -- above function call should've resulted in KeyError
-        assert False
-    except KeyError:
-        pass
+    result = indexing.getTopNDocs("animal", 1)
+    
+    # verifying test by ensuring result is empty list
+    assert len(result) == 0
 
     # verifying test by ensuring indexing data is the same as before steps were ran
     util_functions.assertSameIndexingData(indexing.indexingData, oldIndexingData)
@@ -66,12 +64,10 @@ def test14():
     oldIndexingData = indexing.indexingData.copy()
 
     # steps
-    try:
-        result = indexing.getTopNDocs("yeti", 1)
-        # test failed -- above function call should've resulted in KeyError
-        assert False
-    except KeyError:
-        pass
+    result = indexing.getTopNDocs("yeti", 1)
+    
+    # verifying test by ensuring result is empty list
+    assert len(result) == 0
         
     # verifying test by ensuring indexing data is the same as before steps were ran
     util_functions.assertSameIndexingData(indexing.indexingData, oldIndexingData)

@@ -30,11 +30,11 @@ def addIndex(token, doc, indexes = indexingData):
 #         indexes (dictionary): the indexing data to get docs from -- defaults to indexingData
 # modifies: none
 # returns: a list of Documents, containing the top n documents of the token
-# notes: raises KeyError if the token doesn't exist
+# notes: returns empty list if the token doesn't exist
 def getTopNDocs(token, n = 1, indexes = indexingData):
-    # if the token doesn't exist, raise exception
+    # if the token doesn't exist, return empty list
     if(not token in indexes):
-        raise(KeyError)
+        return []
     
     # loop through and return the top n documents associated with the token
     docs = []
@@ -48,11 +48,11 @@ def getTopNDocs(token, n = 1, indexes = indexingData):
 #         indexes (dictionary): the indexing data to get docs from -- defaults to indexingData
 # modifies: none
 # returns: a list of Documents, containing all the documents associated with the token
-# notes: raises KeyError if the token doesn't exist
+# notes: returns empty list if the token doesn't exist
 def getAllDocs(token, indexes = indexingData): 
-    # if the token doesn't exist, raise exception
+    # if the token doesn't exist, return empty list
     if(not token in indexes):
-        raise(KeyError)
+        return []
 
     # loop through and return all the documents associated with the token
     docs = []
