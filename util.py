@@ -1,5 +1,5 @@
-from .. import indexing
-from .. document import Document
+import indexing
+from document import Document
 
 # getAllDocNames(docs): gets all the names from all the documents in docs
 #

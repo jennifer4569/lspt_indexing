@@ -1,7 +1,7 @@
 # run tests with pytest
-from .. import indexing
-from .. document import Document
-import util_functions
+from ... import indexing
+from ... document import Document
+from ... import util
 import pytest
 
 # test indexing unique tokens only
@@ -24,17 +24,17 @@ def test1():
     # verifying test by checking documents within their respective tokens
     bananaDocs = indexing.getAllDocs("banana")
     assert len(bananaDocs) == 1
-    bananaDocNames = util_functions.getAllDocNames(bananaDocs)
+    bananaDocNames = util.getAllDocNames(bananaDocs)
     assert "B" in bananaDocNames
 
     appleDocs = indexing.getAllDocs("apple")
     assert len(appleDocs) == 1
-    appleDocNames = util_functions.getAllDocNames(appleDocs)
+    appleDocNames = util.getAllDocNames(appleDocs)
     assert "A" in appleDocNames
 
     carrotDocs = indexing.getAllDocs("carrot")
     assert len(carrotDocs) == 1
-    carrotDocNames = util_functions.getAllDocNames(carrotDocs)
+    carrotDocNames = util.getAllDocNames(carrotDocs)
     assert "C" in carrotDocNames
 
 # test indexing many documents for one token, inserted in the order of the word frequency (highest to lowest) for that token
@@ -58,7 +58,7 @@ def test2():
     # verifying test by checking documents within "people" token
     peopleDocs = indexing.getAllDocs("people")
     assert len(peopleDocs) == 5
-    peopleDocNames = util_functions.peopleDocNames(peopleDocs)
+    peopleDocNames = util.peopleDocNames(peopleDocs)
     assert peopleDocNames[0] == "Z"
     assert peopleDocNames[1] == "V"
     assert peopleDocNames[2] == "Y"
@@ -86,7 +86,7 @@ def test3():
     # verifying test by checking documents within "people" token
     peopleDocs = indexing.getAllDocs("people")
     assert len(peopleDocs) == 5
-    peopleDocNames = util_functions.peopleDocNames(peopleDocs)
+    peopleDocNames = util.peopleDocNames(peopleDocs)
     assert peopleDocNames[0] == "Z"
     assert peopleDocNames[1] == "V"
     assert peopleDocNames[2] == "Y"
@@ -114,7 +114,7 @@ def test4():
     # verifying test by checking documents within "people" token
     peopleDocs = indexing.getAllDocs("people")
     assert len(peopleDocs) == 5
-    peopleDocNames = util_functions.peopleDocNames(peopleDocs)
+    peopleDocNames = util.peopleDocNames(peopleDocs)
     assert peopleDocNames[0] == "Z"
     assert peopleDocNames[1] == "V"
     assert peopleDocNames[2] == "Y"
@@ -143,19 +143,19 @@ def test5():
     # verifying test by checking documents within their respective tokens
     bananaDocs = indexing.getAllDocs("banana")
     assert len(bananaDocs) == 3
-    bananaDocNames = util_functions.getAllDocNames(bananaDocs)
+    bananaDocNames = util.getAllDocNames(bananaDocs)
     assert "B" in bananaDocNames
     assert "Ban" in bananaDocNames
     assert "Ba" in bananaDocNames
 
     appleDocs = indexing.getAllDocs("apple")
     assert len(appleDocs) == 1
-    appleDocNames = util_functions.getAllDocNames(appleDocs)
+    appleDocNames = util.getAllDocNames(appleDocs)
     assert "A" in appleDocNames
 
     carrotDocs = indexing.getAllDocs("carrot")
     assert len(carrotDocs) == 1
-    carrotDocNames = util_functions.getAllDocNames(carrotDocs)
+    carrotDocNames = util.getAllDocNames(carrotDocs)
     assert "C" in carrotDocNames
 
 # test indexing when only one token is stored
@@ -180,19 +180,19 @@ def test6():
     # verifying test by checking documents within their respective tokens
     csDocs = indexing.getAllDocs("cs")
     assert len(csDocs) == 3
-    csDocNames = util_functions.getAllDocNames(csDocs)
+    csDocNames = util.getAllDocNames(csDocs)
     assert "computer" in csDocNames
     assert "science" in csDocNames
     assert "python" in csDocNames
 
     techDocs = indexing.getAllDocs("tech")
     assert len(techDocs) == 1
-    techDocNames = util_functions.getAllDocNames(techDocs)
+    techDocNames = util.getAllDocNames(techDocs)
     assert "phone" in techDocNames
 
     languageDocs = indexing.getAllDocs("language")
     assert len(languageDocs) == 1
-    languageDocNames = util_functions.getAllDocNames(languageDocs)
+    languageDocNames = util.getAllDocNames(languageDocs)
     assert "python" in languageDocNames
 
 # test indexing when multiple tokens are stored
@@ -215,21 +215,21 @@ def test7():
     # verifying test by checking documents within their respective tokens
     csDocs = indexing.getAllDocs("cs")
     assert len(csDocs) == 3
-    csDocNames = util_functions.getAllDocNames(csDocs)
+    csDocNames = util.getAllDocNames(csDocs)
     assert "computer" in csDocNames
     assert "science" in csDocNames
     assert "python" in csDocNames
 
     techDocs = indexing.getAllDocs("tech")
     assert len(techDocs) == 3
-    techDocNames = util_functions.getAllDocNames(techDocs)
+    techDocNames = util.getAllDocNames(techDocs)
     assert "phone" in techDocNames
     assert "computer" in techDocNames
     assert "laptop" in techDocNames
 
     languageDocs = indexing.getAllDocs("language")
     assert len(languageDocs) == 2
-    languageDocNames = util_functions.getAllDocNames(languageDocs)
+    languageDocNames = util.getAllDocNames(languageDocs)
     assert "english" in languageDocNames
     assert "python" in languageDocNames
 
@@ -254,24 +254,24 @@ def test8():
     # verifying test by checking documents within their respective tokens
     csDocs = indexing.getAllDocs("cs")
     assert len(csDocs) == 3
-    csDocNames = util_functions.getAllDocNames(csDocs)
+    csDocNames = util.getAllDocNames(csDocs)
     assert "computer" in csDocNames
     assert "science" in csDocNames
     assert "python" in csDocNames
 
     techDocs = indexing.getAllDocs("tech")
     assert len(techDocs) == 1
-    techDocNames = util_functions.getAllDocNames(techDocs)
+    techDocNames = util.getAllDocNames(techDocs)
     assert "phone" in techDocNames
 
     languageDocs = indexing.getAllDocs("language")
     assert len(languageDocs) == 1
-    languageDocNames = util_functions.getAllDocNames(languageDocs)
+    languageDocNames = util.getAllDocNames(languageDocs)
     assert "python" in languageDocNames
 
     testingDocs = indexing.getAllDocs("testing")
     assert len(testingDocs) == 3
-    testingDocNames = util_functions.getAllDocNames(testingDocs)
+    testingDocNames = util.getAllDocNames(testingDocs)
     assert "system" in testingDocNames
     assert "unit" in testingDocNames
     assert "system integration" in testingDocNames
@@ -296,19 +296,19 @@ def test9():
     # verifying test by checking documents within their respective tokens
     csDocs = indexing.getAllDocs("cs")
     assert len(csDocs) == 3
-    csDocNames = util_functions.getAllDocNames(csDocs)
+    csDocNames = util.getAllDocNames(csDocs)
     assert "computer" in csDocNames
     assert "science" in csDocNames
     assert "python" in csDocNames
 
     techDocs = indexing.getAllDocs("tech")
     assert len(techDocs) == 1
-    techDocNames = util_functions.getAllDocNames(techDocs)
+    techDocNames = util.getAllDocNames(techDocs)
     assert "phone" in techDocNames
 
     languageDocs = indexing.getAllDocs("language")
     assert len(languageDocs) == 4
-    languageDocNames = util_functions.getAllDocNames(languageDocs)
+    languageDocNames = util.getAllDocNames(languageDocs)
     assert "python" in languageDocNames
     assert "C++" in languageDocNames
     assert "java" in languageDocNames
@@ -339,19 +339,19 @@ def test10():
     # verifying test by checking documents within their respective tokens
     animalDocs = indexing.getAllDocs("animal")
     assert len(animalDocs) == 3
-    animalDocNames = util_functions.getAllDocNames(animalDocs)
+    animalDocNames = util.getAllDocNames(animalDocs)
     assert animalDocNames[0] == "Dog Wiki"
     assert animalDocNames[1] == "Cat Wiki"
     assert animalDocNames[2] == "Bird Wiki"
 
     catDocs = indexing.getAllDocs("cat")
     assert len(catDocs) == 2
-    catDocNames = util_functions.getAllDocNames(catDocs)
+    catDocNames = util.getAllDocNames(catDocs)
     assert catDocNames[0] == "Cat Wiki"
     assert catDocNames[1] == "Cat Pictures"
 
     dogDocs = indexing.getAllDocs("dog")
     assert len(dogDocs) == 2
-    dogDocNames = util_functions.getAllDocNames(dogDocs)
+    dogDocNames = util.getAllDocNames(dogDocs)
     assert dogDocNames[0] == "Dog Wiki"
     assert dogDocNames[1] == "Golden Retriever Wiki"

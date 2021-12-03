@@ -1,7 +1,7 @@
 # run tests with pytest
-from .. import indexing
-from .. document import Document
-import util_functions
+from ... import indexing
+from ... document import Document
+from ... import util
 import pytest
 import test_indexing
 
@@ -21,7 +21,7 @@ def test17():
         pass
         
     # verifying test by ensuring indexing data is the same as before steps were ran
-    util_functions.assertSameIndexingData(indexing.indexingData, oldIndexingData)
+    util.assertSameIndexingData(indexing.indexingData, oldIndexingData)
 
 # test updating a document in a token that currently isn't associated with this document
 @pytest.mark.skip(reason="test 10 not available yet")
@@ -41,7 +41,7 @@ def test18():
         pass
         
     # verifying test by ensuring indexing data is the same as before steps were ran
-    util_functions.assertSameIndexingData(indexing.indexingData, oldIndexingData)
+    util.assertSameIndexingData(indexing.indexingData, oldIndexingData)
 
 # test updating a document that is only associated with one token
 @pytest.mark.skip(reason="test 10 not available yet")
@@ -62,20 +62,20 @@ def test19():
     # verifying test by checking documents within their respective tokens
     animalDocs = indexing.getAllDocs("animal")
     assert len(animalDocs) == 3
-    animalDocNames = util_functions.getAllDocNames(animalDocs)
+    animalDocNames = util.getAllDocNames(animalDocs)
     assert animalDocNames[0] == "Dog Wiki"
     assert animalDocNames[1] == "Cat Wiki"
     assert animalDocNames[2] == "Bird Wiki"
 
     catDocs = indexing.getAllDocs("cat")
     assert len(catDocs) == 2
-    catDocNames = util_functions.getAllDocNames(catDocs)
+    catDocNames = util.getAllDocNames(catDocs)
     assert catDocNames[0] == "Cat Wiki"
     assert catDocNames[1] == "Cat Pictures"
 
     dogDocs = indexing.getAllDocs("dog")
     assert len(dogDocs) == 2
-    dogDocNames = util_functions.getAllDocNames(dogDocs)
+    dogDocNames = util.getAllDocNames(dogDocs)
     assert dogDocNames[0] == "Dog Wiki"
     assert dogDocNames[1] == "Golden Retriever Wiki"
     
@@ -99,20 +99,20 @@ def test20():
     # verifying test by checking documents within their respective tokens
     animalDocs = indexing.getAllDocs("animal")
     assert len(animalDocs) == 3
-    animalDocNames = util_functions.getAllDocNames(animalDocs)
+    animalDocNames = util.getAllDocNames(animalDocs)
     assert animalDocNames[0] == "Cat Wiki"
     assert animalDocNames[1] == "Dog Wiki"
     assert animalDocNames[2] == "Bird Wiki"
 
     catDocs = indexing.getAllDocs("cat")
     assert len(catDocs) == 2
-    catDocNames = util_functions.getAllDocNames(catDocs)
+    catDocNames = util.getAllDocNames(catDocs)
     assert catDocNames[0] == "Cat Wiki"
     assert catDocNames[1] == "Cat Pictures"
 
     dogDocs = indexing.getAllDocs("dog")
     assert len(dogDocs) == 2
-    dogDocNames = util_functions.getAllDocNames(dogDocs)
+    dogDocNames = util.getAllDocNames(dogDocs)
     assert dogDocNames[0] == "Dog Wiki"
     assert dogDocNames[1] == "Golden Retriever Wiki"
    
@@ -135,19 +135,19 @@ def test21():
     # verifying test by checking documents within their respective tokens
     csDocs = indexing.getAllDocs("cs")
     assert len(csDocs) == 3
-    csDocNames = util_functions.getAllDocNames(csDocs)
+    csDocNames = util.getAllDocNames(csDocs)
     assert "computer" in csDocNames
     assert "science" in csDocNames
     assert "python" in csDocNames
 
     techDocs = indexing.getAllDocs("tech")
     assert len(techDocs) == 1
-    techDocNames = util_functions.getAllDocNames(techDocs)
+    techDocNames = util.getAllDocNames(techDocs)
     assert "phone" in techDocNames
 
     languageDocs = indexing.getAllDocs("language")
     assert len(languageDocs) == 1
-    languageDocNames = util_functions.getAllDocNames(languageDocs)
+    languageDocNames = util.getAllDocNames(languageDocs)
     assert "python" in languageDocNames
 
 
@@ -170,20 +170,20 @@ def test22():
     # verifying test by checking documents within their respective tokens
     animalDocs = indexing.getAllDocs("animal")
     assert len(animalDocs) == 3
-    animalDocNames = util_functions.getAllDocNames(animalDocs)
+    animalDocNames = util.getAllDocNames(animalDocs)
     assert animalDocNames[0] == "Bird Wiki"
     assert animalDocNames[1] == "Dog Wiki"
     assert animalDocNames[2] == "Cat Wiki"
 
     catDocs = indexing.getAllDocs("cat")
     assert len(catDocs) == 2
-    catDocNames = util_functions.getAllDocNames(catDocs)
+    catDocNames = util.getAllDocNames(catDocs)
     assert catDocNames[0] == "Cat Wiki"
     assert catDocNames[1] == "Cat Pictures"
 
     dogDocs = indexing.getAllDocs("dog")
     assert len(dogDocs) == 2
-    dogDocNames = util_functions.getAllDocNames(dogDocs)
+    dogDocNames = util.getAllDocNames(dogDocs)
     assert dogDocNames[0] == "Dog Wiki"
     assert dogDocNames[1] == "Golden Retriever Wiki"
    

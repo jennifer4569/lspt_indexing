@@ -1,7 +1,7 @@
 # run tests with pytest
-from .. import indexing
-from .. document import Document
-import utilFunctions
+from ... import indexing
+from ... document import Document
+from ... import util
 import pytest
 import test_indexing
 
