@@ -3,7 +3,7 @@ from .. import indexing
 from .. document import Document
 import utilFunctions
 import pytest
-import testIndexing
+import test_indexing
 
 # test retrieving document metadata from text transformation
 @pytest.mark.skip(reason="text transformation not available yet")

@@ -1,9 +1,9 @@
 # run tests with pytest
 from .. import indexing
 from .. document import Document
-import utilFunctions
+import util_functions
 import pytest
-import testIndexing
+import test_indexing
 import time
 
 # test indexing time efficiency
@@ -34,7 +34,7 @@ def test25():
         assert token in allTokens
         allDocs = indexing.getAllDocs(token)
         assert len(allDocs) == 10*n
-        allDocNames = utilFunctions.getAllDocNames(allDocs)
+        allDocNames = util_functions.getAllDocNames(allDocs)
         for j in range(10*n):
             docName = token + "," + str(j)
             assert docName in allDocNames
@@ -60,7 +60,7 @@ def test26():
     assert secondsTaken < 3
 
     # verifying test by ensuring indexing data is the same as before steps were ran
-    utilFunctions.assertSameIndexingData(indexing.indexingData, oldIndexingData)
+    util_functions.assertSameIndexingData(indexing.indexingData, oldIndexingData)
 
 # test updating document time efficiency
 @pytest.mark.skip(reason="updateDoc() not available yet")
@@ -106,7 +106,7 @@ def test29():
         assert token in allTokens
         allDocs = indexing.getAllDocs(token)
         assert len(allDocs) == 100*n
-        allDocNames = utilFunctions.getAllDocNames(allDocs)
+        allDocNames = util_functions.getAllDocNames(allDocs)
         for j in range(100*n):
             docName = token + "," + str(j)
             assert docName in allDocNames
