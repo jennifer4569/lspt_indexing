@@ -17,8 +17,10 @@ def test11():
         # test failed -- above function call should've resulted in KeyError
         assert False
     except KeyError:
-        # verifying test by ensuring indexing data is the same as before steps were ran
-        utilFunctions.assertSameIndexingData(indexing.indexingData, oldIndexingData)
+        pass
+
+    # verifying test by ensuring indexing data is the same as before steps were ran
+    utilFunctions.assertSameIndexingData(indexing.indexingData, oldIndexingData)
 
 # test searching by token when only one token is stored
 def test12():
@@ -69,8 +71,10 @@ def test14():
         # test failed -- above function call should've resulted in KeyError
         assert False
     except KeyError:
-        # verifying test by ensuring indexing data is the same as before steps were ran
-        utilFunctions.assertSameIndexingData(indexing.indexingData, oldIndexingData)
+        pass
+        
+    # verifying test by ensuring indexing data is the same as before steps were ran
+    utilFunctions.assertSameIndexingData(indexing.indexingData, oldIndexingData)
 
 # test searching by a token that currently only has one document associated with it
 def test15():
