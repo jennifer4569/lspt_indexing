@@ -31,15 +31,13 @@ def assertSameIndexingData(indexingDataA, indexingDataB):
     allTokensB = indexing.getAllTokens(indexingDataB)
     assert len(allTokensA) == len(allTokensB)
 
-    # ensure all tokens match (ordering as well)
-    for i in range(len(allTokensA)):
-        tokenA = allTokensA[i]
-        tokenB = allTokensB[i]
-        assert tokenA == tokenB
+    # ensure all tokens match
+    for token in allTokensA:
+        assert token in allTokensB
         
         # ensure equal number of documents
-        allDocsA = indexing.getAllDocs(tokenA)
-        allDocsB = indexing.getAllDocs(tokenB)
+        allDocsA = indexing.getAllDocs(token)
+        allDocsB = indexing.getAllDocs(token)
         assert len(allDocsA) == len(allDocsB)
 
         # ensure all documents match (ordering as well)
