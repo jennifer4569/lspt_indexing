@@ -9,19 +9,21 @@ indexingData = {}
 # inputs: token (string): the token to add the document in
 #         doc (Document): the document to add to indexes
 #         indexes (dictionary): the indexing data to add this document to -- defaults to indexingData
+#         score (integer): score of the token within document-- to be used as priority in heap
+#         positions (dictionary): gives frequencies for "title", "headers",  "links", and "other"
 # modifies: indexes
 # returns: none
 # notes: none
-def addIndex(token, doc, indexes = indexingData):
+def addIndex(token, doc, score, positions, indexes = indexingData):
     # if the token doesn't exist, add the token in, initializing its priority queue
     if(not token in indexes):
         indexes[token] = []
 
     # higher score means greater priority
-    priority = doc.calculateDocScore(token) * -1
+    priority = score * -1
 
     # adds the document into the respective token's priority queue
-    heapq.heappush(indexes[token], (priority, doc))
+    heapq.heappush(indexes[token], (priority, doc, positions))
 
 # getTopNDocs(token, n): gets the top n documents associated with the given token
 #
