@@ -1,20 +1,46 @@
-class Document:
-    docName = ""
+class Document(object):
 
     # constructor
     def __init__(self, name, numWords):
         self.docName = name
         self.numWords = numWords
+        self.score = 0
+        self.positionalInfo = {}
 
-    # TEMPORARY -- NEED TO ACTUALLY CALCULATE DOC SCORE
-    # assuming calculateDocScore takes in a dictionary of form
-    """      {
+    def calculateDocScore(self, tokenInfo):
+        weights = {
             "title": 1, 
             "headers": 2, 
             "links": 0,
             "other": 2
-        } """
-    def calculateDocScore(self, tokenInfo):
+        }
+        
+        total = 0
+        multiplier = 0
+        for position, frequency in tokenInfo:
+            # what weight each position has
+            multiplier = weights.get(position, 0)
+            total += multiplier * frequency
+        
+        # divide the total score by the number of words in the document so as to not favor larger documents    
+        total /= self.numWords
+            
         #if certain information isn't available
-        raise Exception("Not enough information to calculate score")
-        return ord(self.docName[0])
+        if total == 0:
+            raise Exception("Not enough information to calculate score")
+        return total
+    
+    def getName(self):
+        return self.docName
+    
+    def getScore(self):
+        return self.score
+    
+    def setScore(self, newScore):
+        self.score = newScore
+        
+    def setPositionalInfo(self, tokenInfo):
+        self.positionalInfo = tokenInfo
+        
+    def getPositionalInfo(self):
+        return self.positionalInfo
