@@ -15,7 +15,7 @@ docDict = DocDict()
 # modifies: indexes
 # returns: none
 # notes: none
-def addIndex(token, docId, score, positions, indexes = indexingData):
+def addIndex(token, docId, score, indexes = indexingData):
     # if the token doesn't exist, add the token in, initializing its priority queue
     if(not token in indexes):
         indexes[token] = []
@@ -43,7 +43,7 @@ def getTopNDocs(token, n = 1, indexes = indexingData):
     docs = []
     for doc in heapq.nlargest(n, indexes[token]):
         docId = doc[1]
-        docs.append(getDocument(docId))
+        docs.append(docDict.getDocument(docId))
     return docs
 
 # getAllDocs(token): gets all the documents associated with the given token
@@ -86,11 +86,11 @@ def updateDoc(token, docId, score, indexes = indexingData):
     if(not token in indexes):
         raise(KeyError)
     val = indexes.get(token)
-    docExists = false;
+    docExists = False
     for element in val:
         if(element[2] == docId):
             element[1] = score
-            docExists = true
+            docExists = True
     if(not docExists):
         raise(LookupError)
 

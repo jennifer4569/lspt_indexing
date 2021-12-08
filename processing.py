@@ -1,5 +1,6 @@
 from document import Document
 from indexing import *
+from indexing import docDict
 
 
 
@@ -12,9 +13,9 @@ from indexing import *
 # modifies: adds to index
 # returns: none  
 
-def processIncomingData(docId, numWords, wordDict):
+def processIncomingData(docID, numWords, wordDict):
     #use document class to create document score.
-    doc = Document(docId, numWords)
+    doc = Document(docID, numWords)
     #some low score we can assign words with improper information so that they can still be indexed, albeit, not accurately
     #this should probaly be adjusted or relative somehow
     defaultScore = 0.1
@@ -25,7 +26,14 @@ def processIncomingData(docId, numWords, wordDict):
             print("Word: {} doesn't have enough information to calculate score. Indexing word with low priority")
             #going to index the word low
             wordScore = defaultScore
-        addIndex(word, doc, wordScore, positions)
+        #check DoctDic
+        exists = docDict.checkIfDocExists(docID)
+        if (exists):
+            #this is still being worked on
+            updateDoc()
+        else:
+            addIndex(word, doc, wordScore, positions)
+
         
 
 
@@ -90,3 +98,4 @@ def getDocsOr(tokens, start, n):
         if len(nDocs)== n: return nDocs
 
     return nDocs """
+
