@@ -75,14 +75,25 @@ def getAllTokens(indexes = indexingData):
 # updateDoc(token, doc, indexes): updates the document with its new document score
 #
 # inputs: token (string): the token associated with the given document 
-#         doc (Document): the document to update
+#         docId (string): the document to update
+#         score (double): the new score
 #         indexes (dictionary): the indexing data to apply this update to -- defaults to indexingData
 # modifies: indexes
 # returns: none
 # notes: raises KeyError if the token doesn't exist
 #        raises LookupError if the document doesn't exist within the token
-def updateDoc(token, docId, indexes = indexingData):
-    pass
+def updateDoc(token, docId, score, indexes = indexingData):
+    if(not token in indexes):
+        raise(KeyError)
+    val = indexes.get(token)
+    docExists = false;
+    for element in val:
+        if(element[2] == docId):
+            element[1] = score
+            docExists = true
+    if(not docExists):
+        raise(LookupError)
+
 
 # clearIndexes(): clears all the indexing data that has been stored
 #
