@@ -21,7 +21,7 @@ def addIndex(token, docId, score, indexes = indexingData):
         indexes[token] = []
 
     # higher score means higher priority -- heapq prioritizes lower priority
-    priority = score * -1
+    priority = score 
 
     # adds the document into the respective token's priority queue
     heapq.heappush(indexes[token], (priority, docId)) #(priority, doc, positions))
@@ -103,3 +103,4 @@ def updateDoc(token, docId, score, indexes = indexingData):
 # notes: none
 def clearIndexes(indexes = indexingData):
     indexes.clear()
+    docDict.clearDict()

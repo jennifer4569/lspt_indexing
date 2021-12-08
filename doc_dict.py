@@ -13,6 +13,5 @@ class DocDict(object):
             return True
         else:
             return False
-
-
-
+    def clearDict(self):
+        self.docs.clear()

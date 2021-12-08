@@ -43,17 +43,22 @@ def test1():
     assert "C" in carrotDocNames
 
 # test indexing many documents for one token, inserted in the order of the word frequency (highest to lowest) for that token
-@pytest.mark.skip(reason="document score not available yet")
 def test2():
     # initial setup
     indexing.clearIndexes()
 
     # steps
-    indexing.addIndex("people", Document("Z"))
-    indexing.addIndex("people", Document("V"))
-    indexing.addIndex("people", Document("Y"))
-    indexing.addIndex("people", Document("U"))
-    indexing.addIndex("people", Document("X"))
+    indexing.docDict.addDocument(Document("Z", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("V", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("Y", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("U", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("X", random.randint(1, 1000)))
+    
+    indexing.addIndex("people", "Z", 20)
+    indexing.addIndex("people", "V", 19)
+    indexing.addIndex("people", "Y", 15)
+    indexing.addIndex("people", "U", 10)
+    indexing.addIndex("people", "X", 1)
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()
@@ -63,7 +68,7 @@ def test2():
     # verifying test by checking documents within "people" token
     peopleDocs = indexing.getAllDocs("people")
     assert len(peopleDocs) == 5
-    peopleDocNames = util.peopleDocNames(peopleDocs)
+    peopleDocNames = util.getAllDocNames(peopleDocs)
     assert peopleDocNames[0] == "Z"
     assert peopleDocNames[1] == "V"
     assert peopleDocNames[2] == "Y"
@@ -71,17 +76,22 @@ def test2():
     assert peopleDocNames[4] == "X"
 
 # test indexing many documents for one token, inserted in the order of the word frequency (lowest to highest) for that token
-@pytest.mark.skip(reason="document score not available yet")
 def test3():
     # initial setup
     indexing.clearIndexes()
 
     # steps
-    indexing.addIndex("people", Document("X"))
-    indexing.addIndex("people", Document("U"))
-    indexing.addIndex("people", Document("Y"))
-    indexing.addIndex("people", Document("V"))
-    indexing.addIndex("people", Document("Z"))
+    indexing.docDict.addDocument(Document("Z", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("V", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("Y", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("U", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("X", random.randint(1, 1000)))
+    
+    indexing.addIndex("people", "X", 1)
+    indexing.addIndex("people", "U", 10)
+    indexing.addIndex("people", "Y", 15)
+    indexing.addIndex("people", "V", 19)
+    indexing.addIndex("people", "Z", 20)
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()
@@ -91,7 +101,7 @@ def test3():
     # verifying test by checking documents within "people" token
     peopleDocs = indexing.getAllDocs("people")
     assert len(peopleDocs) == 5
-    peopleDocNames = util.peopleDocNames(peopleDocs)
+    peopleDocNames = util.getAllDocNames(peopleDocs)
     assert peopleDocNames[0] == "Z"
     assert peopleDocNames[1] == "V"
     assert peopleDocNames[2] == "Y"
@@ -99,17 +109,22 @@ def test3():
     assert peopleDocNames[4] == "X"
 
 # test indexing many documents for one token, inserted in random order of the word frequency for that token
-@pytest.mark.skip(reason="document score not available yet")
 def test4():
     # initial setup
     indexing.clearIndexes()
 
     # steps
-    indexing.addIndex("people", Document("Z"))
-    indexing.addIndex("people", Document("Y"))
-    indexing.addIndex("people", Document("X"))
-    indexing.addIndex("people", Document("V"))
-    indexing.addIndex("people", Document("U"))
+    indexing.docDict.addDocument(Document("Z", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("V", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("Y", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("U", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("X", random.randint(1, 1000)))
+    
+    indexing.addIndex("people", "Z", 20)
+    indexing.addIndex("people", "Y", 15)
+    indexing.addIndex("people", "X", 1)
+    indexing.addIndex("people", "V", 19)
+    indexing.addIndex("people", "U", 10)
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()
@@ -119,7 +134,7 @@ def test4():
     # verifying test by checking documents within "people" token
     peopleDocs = indexing.getAllDocs("people")
     assert len(peopleDocs) == 5
-    peopleDocNames = util.peopleDocNames(peopleDocs)
+    peopleDocNames = util.getAllDocNames(peopleDocs)
     assert peopleDocNames[0] == "Z"
     assert peopleDocNames[1] == "V"
     assert peopleDocNames[2] == "Y"
