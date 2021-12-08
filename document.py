@@ -9,10 +9,10 @@ class Document(object):
 
     def calculateDocScore(self, tokenInfo):
         weights = {
-            "title": 1, 
-            "headers": 2, 
-            "links": 0,
-            "other": 2
+            "title": 1.0, 
+            "headers": 0.75, 
+            "links": 0.5,
+            "other": 0.25
         }
         
         total = 0
