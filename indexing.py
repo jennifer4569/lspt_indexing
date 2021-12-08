@@ -1,8 +1,9 @@
 import heapq
 from document import Document
-
+from doc_dict import DocDict
 # indexingData dictionary: key is the token, value is the priority queue of documents
 indexingData = {}
+docDict = DocDict()
 
 # addIndex(token, doc): adds the document to indexes, based on the token
 # 
@@ -14,16 +15,16 @@ indexingData = {}
 # modifies: indexes
 # returns: none
 # notes: none
-def addIndex(token, doc, score, positions, indexes = indexingData):
+def addIndex(token, docId, score, positions, indexes = indexingData):
     # if the token doesn't exist, add the token in, initializing its priority queue
     if(not token in indexes):
         indexes[token] = []
 
-    # higher score means greater priority
+    # higher score means higher priority -- heapq prioritizes lower priority
     priority = score * -1
 
     # adds the document into the respective token's priority queue
-    heapq.heappush(indexes[token], (priority, doc, positions))
+    heapq.heappush(indexes[token], (priority, docId)) #(priority, doc, positions))
 
 # getTopNDocs(token, n): gets the top n documents associated with the given token
 #
@@ -41,7 +42,8 @@ def getTopNDocs(token, n = 1, indexes = indexingData):
     # loop through and return the top n documents associated with the token
     docs = []
     for doc in heapq.nlargest(n, indexes[token]):
-        docs.append(doc[1])
+        docId = doc[1]
+        docs.append(getDocument(docId))
     return docs
 
 # getAllDocs(token): gets all the documents associated with the given token
@@ -56,11 +58,7 @@ def getAllDocs(token, indexes = indexingData):
     if(not token in indexes):
         return []
 
-    # loop through and return all the documents associated with the token
-    docs = []
-    for doc in heapq.nlargest(len(indexes[token]), indexes[token]):
-        docs.append(doc[1])
-    return docs
+    return getTopNDocs(token, len(indexes[token]), indexes)
 
 # getAllTokens(): gets all the indices stored in indexes
 #
