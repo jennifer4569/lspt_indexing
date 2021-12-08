@@ -81,7 +81,7 @@ def getAllTokens(indexes = indexingData):
 # returns: none
 # notes: raises KeyError if the token doesn't exist
 #        raises LookupError if the document doesn't exist within the token
-def updateDoc(token, doc, indexes = indexingData):
+def updateDoc(token, docId, indexes = indexingData):
     pass
 
 # clearIndexes(): clears all the indexing data that has been stored
