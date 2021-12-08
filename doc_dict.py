@@ -1,15 +1,15 @@
 class DocDict(object):
-    docDict = {}
+    docs = {}
     # constructor
     
-    def addDocument(document, docs = docDict):
-        docs[document.name] = document
-    def removeDocument(docID, docs = docDict ):
-        del docs[docID]
-    def getDocument(docID, docs = docDict):
-        return docs[docID]
-    def checkIfDocExists(docID, docs = docDict):
-        if docID in docs:
+    def addDocument(self, document):
+        self.docs[document.docName] = document
+    def removeDocument(self, docID):
+        self.docs.pop(docID)
+    def getDocument(self, docID):
+        return self.docs[docID]
+    def checkIfDocExists(self, docID):
+        if docID in self.docs:
             return True
         else:
             return False
