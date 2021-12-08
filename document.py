@@ -31,7 +31,7 @@ class Document(object):
         return total
 
     def addToken(self, tokenName, positionInfo):
-        score = calculateScore(positionInfo)
+        score = self.calculateScore(positionInfo)
         self.tokens[tokenName] = (positionInfo, score)
     
     def getTokenInfo(self, tokenName):
