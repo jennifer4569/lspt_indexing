@@ -3,6 +3,7 @@ from ... import indexing
 from ... document import Document
 from ... import util
 import pytest
+import random 
 
 # test indexing unique tokens only
 def test1():
@@ -10,9 +11,13 @@ def test1():
     indexing.clearIndexes()
 
     # steps
-    indexing.addIndex("banana", Document("B"))
-    indexing.addIndex("apple", Document("A"))
-    indexing.addIndex("carrot", Document("C"))
+    indexing.docDict.addDocument(Document("A", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("B", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("C", random.randint(1, 1000)))
+    
+    indexing.addIndex("banana", "B", random.randint(1,1000))
+    indexing.addIndex("apple", "A", random.randint(1,1000))
+    indexing.addIndex("carrot", "C", random.randint(1,1000))
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()
