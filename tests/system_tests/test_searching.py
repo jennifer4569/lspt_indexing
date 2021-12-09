@@ -4,6 +4,7 @@ from ... document import Document
 from ... import util
 import pytest
 import test_indexing
+import random
 
 # test searching by token when no tokens are stored
 def test11():
@@ -24,7 +25,8 @@ def test11():
 def test12():
     # initial setup
     indexing.clearIndexes()
-    indexing.addIndex("animal", Document("Cat Wiki"))
+    indexing.docDict.addDocument(Document("Cat Wiki", random.randint(1,1000)))
+    indexing.addIndex("animal", "Cat Wiki", random.randint(1,1000))
     oldIndexingData = indexing.indexingData.copy()
 
     # steps
@@ -39,7 +41,6 @@ def test12():
     util.assertSameIndexingData(indexing.indexingData, oldIndexingData)
 
 # test searching by token when multiple tokens are stored
-@pytest.mark.skip(reason="test 10 not available yet")
 def test13():
     # initial setup
     test_indexing.test10()
@@ -57,7 +58,6 @@ def test13():
     util.assertSameIndexingData(indexing.indexingData, oldIndexingData)
 
 # test searching by a token that doesn't exist (yet)
-@pytest.mark.skip(reason="test 10 not available yet")
 def test14():
     # initial setup
     test_indexing.test10()
@@ -90,7 +90,6 @@ def test15():
     util.assertSameIndexingData(indexing.indexingData, oldIndexingData)
 
 # test searching by a token that currently has multiple documents associated with it
-@pytest.mark.skip(reason="test 10 not available yet")
 def test16():
     # initial setup
     test_indexing.test10()

@@ -11,9 +11,9 @@ def test1():
     indexing.clearIndexes()
 
     # steps
-    indexing.docDict.addDocument(Document("A", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("B", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("C", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("A", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("B", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("C", random.randint(1,1000)))
     
     indexing.addIndex("banana", "B", random.randint(1,1000))
     indexing.addIndex("apple", "A", random.randint(1,1000))
@@ -48,11 +48,11 @@ def test2():
     indexing.clearIndexes()
 
     # steps
-    indexing.docDict.addDocument(Document("Z", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("V", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("Y", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("U", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("X", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("Z", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("V", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("Y", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("U", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("X", random.randint(1,1000)))
     
     indexing.addIndex("people", "Z", 20)
     indexing.addIndex("people", "V", 19)
@@ -81,11 +81,11 @@ def test3():
     indexing.clearIndexes()
 
     # steps
-    indexing.docDict.addDocument(Document("Z", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("V", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("Y", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("U", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("X", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("Z", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("V", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("Y", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("U", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("X", random.randint(1,1000)))
     
     indexing.addIndex("people", "X", 1)
     indexing.addIndex("people", "U", 10)
@@ -114,11 +114,11 @@ def test4():
     indexing.clearIndexes()
 
     # steps
-    indexing.docDict.addDocument(Document("Z", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("V", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("Y", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("U", random.randint(1, 1000)))
-    indexing.docDict.addDocument(Document("X", random.randint(1, 1000)))
+    indexing.docDict.addDocument(Document("Z", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("V", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("Y", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("U", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("X", random.randint(1,1000)))
     
     indexing.addIndex("people", "Z", 20)
     indexing.addIndex("people", "Y", 15)
@@ -147,11 +147,17 @@ def test5():
     indexing.clearIndexes()
 
     # steps
-    indexing.addIndex("banana", Document("B"))
-    indexing.addIndex("apple", Document("A"))
-    indexing.addIndex("carrot", Document("C"))
-    indexing.addIndex("banana", Document("Ba"))
-    indexing.addIndex("banana", Document("Ban"))
+    indexing.docDict.addDocument(Document("B", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("A", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("C", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("Ba", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("Ban", random.randint(1,1000)))
+
+    indexing.addIndex("banana", "B", random.randint(1,1000))
+    indexing.addIndex("apple", "A", random.randint(1,1000))
+    indexing.addIndex("carrot", "C", random.randint(1,1000))
+    indexing.addIndex("banana", "Ba", random.randint(1,1000))
+    indexing.addIndex("banana", "Ban", random.randint(1,1000))
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()
@@ -182,13 +188,19 @@ def test5():
 def test6():
     # initial setup
     indexing.clearIndexes()
-    indexing.addIndex("cs", Document("computer"))
+
+    indexing.docDict.addDocument(Document("computer", random.randint(1,1000)))
+    indexing.addIndex("cs", "computer", random.randint(1,1000))
 
     # steps
-    indexing.addIndex("cs", Document("science"))
-    indexing.addIndex("tech", Document("phone"))
-    indexing.addIndex("language", Document("python"))
-    indexing.addIndex("cs", Document("python"))
+    indexing.docDict.addDocument(Document("science", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("phone", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("python", random.randint(1,1000)))
+
+    indexing.addIndex("cs", "science", random.randint(1,1000))
+    indexing.addIndex("tech", "phone", random.randint(1,1000))
+    indexing.addIndex("language", "python", random.randint(1,1000))
+    indexing.addIndex("cs", "python", random.randint(1,1000))
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()
@@ -221,9 +233,13 @@ def test7():
     test6()
 
     # steps
-    indexing.addIndex("language", Document("english"))
-    indexing.addIndex("tech", Document("laptop"))
-    indexing.addIndex("tech", Document("computer"))
+    indexing.docDict.addDocument(Document("english", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("laptop", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("computer", random.randint(1,1000)))
+    
+    indexing.addIndex("language", "english", random.randint(1,1000))
+    indexing.addIndex("tech", "laptop", random.randint(1,1000))
+    indexing.addIndex("tech", "computer", random.randint(1,1000))
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()
@@ -259,9 +275,13 @@ def test8():
     test6()
 
     # steps
-    indexing.addIndex("testing", Document("system"))
-    indexing.addIndex("testing", Document("unit"))
-    indexing.addIndex("testing", Document("system integration"))
+    indexing.docDict.addDocument(Document("system", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("unit", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("system integration", random.randint(1,1000)))
+    
+    indexing.addIndex("testing", "system", random.randint(1,1000))
+    indexing.addIndex("testing", "unit", random.randint(1,1000))
+    indexing.addIndex("testing", "system integration", random.randint(1,1000))
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()
@@ -302,9 +322,13 @@ def test9():
     test6()
 
     # steps
-    indexing.addIndex("language", Document("java"))
-    indexing.addIndex("language", Document("C++"))
-    indexing.addIndex("language", Document("javascript"))
+    indexing.docDict.addDocument(Document("java", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("C++", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("javascript", random.randint(1,1000)))
+    
+    indexing.addIndex("language", "java", random.randint(1,1000))
+    indexing.addIndex("language", "C++", random.randint(1,1000))
+    indexing.addIndex("language", "javascript", random.randint(1,1000))
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()
@@ -335,19 +359,25 @@ def test9():
     assert "javascript" in languageDocNames
 
 # test indexing a document with a token that currently has multiple other documents associated with it
-@pytest.mark.skip(reason="document score not available yet")
 def test10():
     # initial setup
     indexing.clearIndexes()
-    indexing.addIndex("animal", Document("Dog Wiki"))
-    indexing.addIndex("animal", Document("Bird Wiki"))
-    indexing.addIndex("cat", Document("Cat Pictures"))
-    indexing.addIndex("dog", Document("Dog Wiki"))
-    indexing.addIndex("dog", Document("Golden Retriever Wiki"))
-    indexing.addIndex("cat", Document("Cat Wiki"))
+
+    indexing.docDict.addDocument(Document("Dog Wiki", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("Cat Wiki", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("Bird Wiki", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("Golden Retriever Wiki", random.randint(1,1000)))
+    indexing.docDict.addDocument(Document("Cat Pictures", random.randint(1,1000)))
+    
+    indexing.addIndex("animal", "Dog Wiki", 6)
+    indexing.addIndex("animal", "Bird Wiki", 3)
+    indexing.addIndex("cat", "Cat Pictures", 4)
+    indexing.addIndex("dog", "Dog Wiki", 23)
+    indexing.addIndex("dog", "Golden Retriever Wiki", 14)
+    indexing.addIndex("cat", "Cat Wiki", 20)
 
     # steps
-    indexing.addIndex("animal", Document("Cat Wiki"))
+    indexing.addIndex("animal", "Cat Wiki", 5)
 
     # verifying test by checking tokens
     allTokens = indexing.getAllTokens()

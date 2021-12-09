@@ -20,11 +20,8 @@ def addIndex(token, docId, score, indexes = indexingData):
     if(not token in indexes):
         indexes[token] = []
 
-    # higher score means higher priority -- heapq prioritizes lower priority
-    priority = score 
-
     # adds the document into the respective token's priority queue
-    heapq.heappush(indexes[token], (priority, docId)) #(priority, doc, positions))
+    heapq.heappush(indexes[token], (score, docId))
 
 # getTopNDocs(token, n): gets the top n documents associated with the given token
 #
@@ -80,20 +77,21 @@ def getAllTokens(indexes = indexingData):
 #         indexes (dictionary): the indexing data to apply this update to -- defaults to indexingData
 # modifies: indexes
 # returns: none
-# notes: raises KeyError if the token doesn't exist
-#        raises LookupError if the document doesn't exist within the token
+# notes: adds token if the token doesn't exist
+#        adds document within the token if the document doesn't exist within the token
 def updateDoc(token, docId, score, indexes = indexingData):
     if(not token in indexes):
-        raise(KeyError)
+        indexes[token] = []
     val = indexes.get(token)
     docExists = False
     for element in val:
-        if(element[2] == docId):
-            element[1] = score
+        if(element[1] == docId):
+            indexes[token].remove(element)
+            heapq.heappush(indexes[token], (score, docId))
             docExists = True
+            break
     if(not docExists):
-        raise(LookupError)
-
+        heapq.heappush(indexes[token], (score, docId))
 
 # clearIndexes(): clears all the indexing data that has been stored
 #

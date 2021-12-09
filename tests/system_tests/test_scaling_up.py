@@ -5,6 +5,7 @@ from ... import util
 import pytest
 import test_indexing
 import time
+import random
 
 # test indexing time efficiency
 def test25():
@@ -18,7 +19,8 @@ def test25():
         token = str(n)
         for j in range(10*n):
             docName = token + "," + str(j)
-            indexing.addIndex(token, Document(docName))
+            indexing.docDict.addDocument(Document(docName, random.randint(1,1000)))
+            indexing.addIndex(token, docName, random.randint(1,1000))
     end = time.time()
     
     # verifying test by checking timer
@@ -63,7 +65,6 @@ def test26():
     util.assertSameIndexingData(indexing.indexingData, oldIndexingData)
 
 # test updating document time efficiency
-@pytest.mark.skip(reason="updateDoc() not available yet")
 def test27():
     # initial setup
     test25()
@@ -75,13 +76,26 @@ def test27():
         token = str(n)
         for j in range(n):
             docName = token + "," + str(j)
-            indexing.updateDoc(token, Document(docName))
+            indexing.updateDoc(token, docName, random.randint(1,1000))
     end = time.time()
     
     # verifying test by checking timer
     secondsTaken = end - start
     assert secondsTaken < 3
 
+    # verifying test by checking indexing data
+    allTokens = indexing.getAllTokens()
+    assert len(allTokens) == 100
+    for i in range(100):
+        n = i + 1
+        token = str(n)
+        assert token in allTokens
+        allDocs = indexing.getAllDocs(token)
+        assert len(allDocs) == 10*n
+        allDocNames = util.getAllDocNames(allDocs)
+        for j in range(10*n):
+            docName = token + "," + str(j)
+            assert docName in allDocNames
 
 # test storage with large amounts of indexing requests
 @pytest.mark.skip(reason="FAILS: takes too long, never finishes running")
@@ -95,7 +109,8 @@ def test29():
         token = str(n)
         for j in range(100*n):
             docName = token + "," + str(j)
-            indexing.addIndex(token, Document(docName))
+            indexing.docDict.addDocument(Document(docName, random.randint(1,1000)))
+            indexing.addIndex(token, docName, random.randint(1,1000))
 
     # verifying test by checking indexing data
     allTokens = indexing.getAllTokens()
@@ -112,7 +127,7 @@ def test29():
             assert docName in allDocNames
 
 # test storage with large amounts of updating document requests
-@pytest.mark.skip(reason="updateDoc() not available yet")
+@pytest.mark.skip(reason="FAILS: takes too long, never finishes running")
 def test30():
     # initial setup
     test25()
@@ -123,4 +138,18 @@ def test30():
         token = str(n)
         for j in range(10*n):
             docName = token + "," + str(j)
-            indexing.updateDoc(token, Document(docName))
+            indexing.updateDoc(token, docName, random.randint(1,1000))
+            
+    # verifying test by checking indexing data
+    allTokens = indexing.getAllTokens()
+    assert len(allTokens) == 100
+    for i in range(100):
+        n = i + 1
+        token = str(n)
+        assert token in allTokens
+        allDocs = indexing.getAllDocs(token)
+        assert len(allDocs) == 10*n
+        allDocNames = util.getAllDocNames(allDocs)
+        for j in range(10*n):
+            docName = token + "," + str(j)
+            assert docName in allDocNames
